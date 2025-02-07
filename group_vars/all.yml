@@ -2,8 +2,8 @@ default_roles:
   - system
   # - Bitwarden/Keepassxc
   # - bash
-  - bat
-  # - btop
+  # - bat
+  - btop
   # - fastfetch
   # - flatpak
   # - fonts
