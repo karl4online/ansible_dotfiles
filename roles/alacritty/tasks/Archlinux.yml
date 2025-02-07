@@ -1,0 +1,44 @@
+- name: "Alacritty | Install"
+  community.general.pacman:
+    name: alacritty
+    state: present
+  become: true
+
+- name: "Alacritty | Ensure alacritty directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/alacritty
+
+- name: "Alacritty | Copy alacritty config"
+  ansible.builtin.copy:
+    src: alacritty.toml
+    dest: ~/.config/alacritty/alacritty.toml
+    mode: "0644"
+
+- name: "Alacritty | Copy alacritty keybinds"
+  ansible.builtin.copy:
+    src: keybinds.toml
+    dest: ~/.config/alacritty/keybinds.toml
+    mode: "0644"
+
+- name: "Alacritty | Copy alacritty theme catppuccin_mocha"
+  ansible.builtin.copy:
+    src: catppuccin_mocha.toml
+    dest: ~/.config/alacritty/catppuccin_mocha.toml
+    mode: "0644"
+
+- name: "Alacritty | Copy alacritty theme gruvbox_dark"
+  ansible.builtin.copy:
+    src: gruvbox_dark.toml
+    dest: ~/.config/alacritty/gruvbox_dark.toml
+    mode: "0644"
+
+- name: "Alacritty | Copy alacritty theme tokyo-night"
+  ansible.builtin.copy:
+    src: tokyo-night.toml
+    dest: ~/.config/alacritty/tokyo-night.toml
+    mode: "0644"
