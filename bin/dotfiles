@@ -1,38 +1,8 @@
 #!/bin/bash
 
-# color codes
-NC='\033[0m'
-GREEN='\033[00;32m'
-CYAN='\033[00;36m'
-SEA="\\033[38;5;49m"
-LBLACK='\033[01;30m'
-LRED='\033[01;31m'
-LGREEN='\033[01;32m'
-OVERWRITE='\e[1A\e[K'
-# RESTORE='\033[0m'
-# BLACK='\033[00;30m'
-# RED='\033[00;31m'
-# YELLOW='\033[00;33m'
-# BLUE='\033[00;34m'
-# PURPLE='\033[00;35m'
-# LIGHTGRAY='\033[00;37m'
-# LYELLOW='\033[01;33m'
-# LBLUE='\033[01;34m'
-# LPURPLE='\033[01;35m'
-# LCYAN='\033[01;36m'
-# WHITE='\033[01;37m'
-
 #emoji codes
-CHECK_MARK="${GREEN}\xE2\x9C\x94${NC}"
-ARROW="${SEA}\xE2\x96\xB6${NC}"
-# X_MARK="${RED}\xE2\x9C\x96${NC}"
-# PIN="${RED}\xF0\x9F\x93\x8C${NC}"
-# CLOCK="${GREEN}\xE2\x8C\x9B${NC}"
-# BOOK="${RED}\xF0\x9F\x93\x8B${NC}"
-# HOT="${ORANGE}\xF0\x9F\x94\xA5${NC}"
-# WARNING="${RED}\xF0\x9F\x9A\xA8${NC}"
-# RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
-
+CHECK_MARK="\xE2\x9C\x94"
+ARROW="\xE2\x96\xB6"
 
 
 set -e
@@ -46,11 +16,11 @@ IS_FIRST_RUN="$HOME/Documents/dotfiles_run"
 function __task {
   # if _task is called while a task was set, complete the previous
   if [[ $TASK != "" ]]; then
-    printf "%s%s [✓]  %s%s\n" "$OVERWRITE" "$LGREEN" "$LGREEN" "$TASK"
+    printf "%s [✓] %s\n" "$OVERWRITE" "$TASK"
   fi
   # set new task title and print
   TASK=$1
-  printf "%s [ ]  %s \n%s" "$LBLACK" "$TASK" "$LRED"
+  printf "  [ ]  %s \n" "$TASK"
 }
 
 # _cmd performs commands with error checking
@@ -66,7 +36,7 @@ function _cmd {
     return 0 # success
   fi
   # read error from log and add spacing
-  printf "%s%s [X]  %s%s\n" "$OVERWRITE" "$LRED" "$TASK" "$LRED"
+  printf "%s [X] %s\n" "$OVERWRITE" "$TASK"
   while read -r line; do
     printf "      %s\n" "$line"
   done < "$DOTFILES_LOG"
@@ -82,7 +52,7 @@ function _clear_task {
 }
 
 function _task_done {
-  printf "%s%s [✓]  %s%s\n" "$OVERWRITE" "$LGREEN" "$LGREEN" "$TASK"
+  printf "%s [✓]  %s\n" "$OVERWRITE" "$TASK"
   _clear_task
 }
 
@@ -168,8 +138,8 @@ ansible-playbook "$DOTFILES_DIR/main.yml" "$@"
 popd > /dev/null 2>&1
 
 if ! [[ -f "$IS_FIRST_RUN" ]]; then
-  echo -e "${CHECK_MARK} ${GREEN}First run complete!${NC}"
-  echo -e "${ARROW} ${CYAN}Please reboot your computer to complete the setup.${NC}"
+  echo -e "${CHECK_MARK} First run complete!"
+  echo -e "${ARROW} Please reboot your computer to complete the setup."
   touch "$IS_FIRST_RUN"
 fi
 

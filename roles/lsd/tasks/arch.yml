@@ -1,0 +1,27 @@
+---
+- name: "LSD | Install"
+  community.general.pacman:
+    name: lsd
+    state: present
+  become: true
+
+- name: "LSD | Ensure lsd directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/lsd
+
+- name: "LSD | Copy lsd config"
+  ansible.builtin.copy:
+    src: config.yaml
+    dest: ~/.config/lsd/config.yaml
+    mode: "0644"
+
+- name: "LSD | Copy lsd colors"
+  ansible.builtin.copy:
+    src: colors.yaml
+    dest: ~/.config/lsd/colors.yaml
+    mode: "0644"
