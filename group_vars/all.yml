@@ -21,15 +21,3 @@ default_roles:
   # - zellij
   # - zoxide
   # - zsh
-
-git_user_name: "karl4online"
-# op:
-#   git:
-#     user:
-#       email: "op://Personal/GitHub/email"
-#     allowed_signers: "op://Personal/karl4online SSH/allowed_signers"
-#   ssh:
-#     github:
-#       techdufus:
-#         - name: id_ed25519
-#           vault_path: "op://Personal/karl4online SSH"

@@ -4,6 +4,7 @@
 CHECK_MARK="\xE2\x9C\x94"
 ARROW="\xE2\x96\xB6"
 
+OVERWRITE='\e[1A\e[K'
 
 set -e
 
@@ -59,9 +60,9 @@ function _task_done {
 function arch_setup() {
   if ! [ -x "$(command -v ansible)" ]; then
     __task "Installing Ansible"
-    _cmd "sudo pacman -Sy --noconfirm"
     _cmd "sudo pacman -S --noconfirm --needed ansible"
     _cmd "sudo pacman -S --noconfirm --needed python-argcomplete"
+    # _cmd "sudo pacman -Sy --noconfirm"
     # _cmd "sudo activate-global-python-argcomplete3"
   fi
   if ! pacman -Q python3 >/dev/null 2>&1; then
@@ -125,8 +126,8 @@ if ! [[ -d "$DOTFILES_DIR" ]]; then
   __task "Cloning repository"
   _cmd "git clone --quiet https://github.com/karl4online/ansible_dotfiles.git $DOTFILES_DIR"
 else
-  __task "Updating repository"
-  _cmd "git -C $DOTFILES_DIR pull --quiet"
+  __task "Updating repository. NOT!!!!!!!"
+  # _cmd "git -C $DOTFILES_DIR pull --quiet"
 fi
 
 pushd "$DOTFILES_DIR" > /dev/null 2>&1
