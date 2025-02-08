@@ -16,8 +16,6 @@
 
 - name: "LSD | Symlink lsd config"
   ansible.builtin.file:
-    # src: "{{ role_path }}/tasks/{{ ansible_distribution }}.yml"
-    # src: config.yaml
     src: "{{ role_path }}/files/config.yaml"
     dest: ~/.config/lsd/config.yaml
     mode: "0644"
@@ -26,7 +24,6 @@
 
 - name: "LSD | Symlink lsd colors"
   ansible.builtin.file:
-    # src: colors.yaml
     src: "{{ role_path }}/files/colors.yaml"
     dest: ~/.config/lsd/colors.yaml
     mode: "0644"

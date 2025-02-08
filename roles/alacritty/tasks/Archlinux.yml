@@ -13,32 +13,42 @@
     - ~/.config
     - ~/.config/alacritty
 
-- name: "Alacritty | Copy alacritty config"
-  ansible.builtin.copy:
-    src: alacritty.toml
+- name: "Alacritty | Symlink alacritty config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/alacritty.toml"
     dest: ~/.config/alacritty/alacritty.toml
     mode: "0644"
+    state: link
+    force: true
 
-- name: "Alacritty | Copy alacritty keybinds"
-  ansible.builtin.copy:
-    src: keybinds.toml
+- name: "Alacritty | Symlink alacritty keybinds"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/keybinds.toml"
     dest: ~/.config/alacritty/keybinds.toml
     mode: "0644"
+    state: link
+    force: true
 
-- name: "Alacritty | Copy alacritty theme catppuccin_mocha"
-  ansible.builtin.copy:
-    src: catppuccin_mocha.toml
+- name: "Alacritty | Symlink alacritty theme catppuccin_mocha"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/catppuccin_mocha.toml"
     dest: ~/.config/alacritty/catppuccin_mocha.toml
     mode: "0644"
+    state: link
+    force: true
 
-- name: "Alacritty | Copy alacritty theme gruvbox_dark"
-  ansible.builtin.copy:
-    src: gruvbox_dark.toml
+- name: "Alacritty | Symlink alacritty theme gruvbox_dark"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/gruvbox_dark.toml"
     dest: ~/.config/alacritty/gruvbox_dark.toml
     mode: "0644"
+    state: link
+    force: true
 
-- name: "Alacritty | Copy alacritty theme tokyo-night"
-  ansible.builtin.copy:
-    src: tokyo-night.toml
+- name: "Alacritty | Symlink alacritty theme tokyo-night"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/tokyo-night.toml"
     dest: ~/.config/alacritty/tokyo-night.toml
     mode: "0644"
+    state: link
+    force: true

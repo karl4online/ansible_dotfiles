@@ -14,14 +14,18 @@
     - ~/.config/btop
     - ~/.config/btop/themes
 
-- name: "BTOP | Copy btop config"
-  ansible.builtin.copy:
-    src: btop.conf
+- name: "BTOP | Symlink btop config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/btop.conf"
     dest: ~/.config/btop/btop.conf
     mode: "0644"
+    state: link
+    force: true
 
-- name: "BTOP | Copy btop colors"
-  ansible.builtin.copy:
-    src: catppuccin_mocha.theme
+- name: "BTOP | Symlink btop theme"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/catppuccin_mocha.theme"
     dest: ~/.config/btop/themes/catppuccin_mocha.theme
     mode: "0644"
+    state: link
+    force: true
