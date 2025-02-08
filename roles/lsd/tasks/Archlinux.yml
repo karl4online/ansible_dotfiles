@@ -20,6 +20,7 @@
     dest: ~/.config/lsd/config.yaml
     mode: "0644"
     state: link
+    force: true
 
 - name: "LSD | Symlink lsd colors"
   ansible.builtin.file:
@@ -27,3 +28,4 @@
     dest: ~/.config/lsd/colors.yaml
     mode: "0644"
     state: link
+    force: true
