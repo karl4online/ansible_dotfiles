@@ -1,18 +1,22 @@
 #!/bin/bash
 
-#emoji codes
-CHECK_MARK="\xE2\x9C\x94"
-ARROW="\xE2\x96\xB6"
-
+# color codes
+NC='\033[0m'
+GREEN='\033[00;32m'
+SEA="\\033[38;5;49m"
 OVERWRITE='\e[1A\e[K'
+
+#emoji codes
+CHECK_MARK="${GREEN}\xE2\x9C\x94${NC}"
+ARROW="${SEA}\xE2\x96\xB6${NC}"
 
 set -e
 
 # Paths
 ID=""
-DOTFILES_LOG="$HOME/Documents/dotfiles.log"
 DOTFILES_DIR="$HOME/Dotfiles"
-IS_FIRST_RUN="$HOME/Documents/dotfiles_run"
+DOTFILES_LOG="$HOME/.dotfiles.log"
+IS_FIRST_RUN="$HOME/.dotfiles.run"
 # _header colorize the given argument with spacing
 function __task {
   # if _task is called while a task was set, complete the previous
@@ -62,17 +66,18 @@ function arch_setup() {
     __task "Installing Ansible"
     _cmd "sudo pacman -S --noconfirm --needed ansible"
     _cmd "sudo pacman -S --noconfirm --needed python-argcomplete"
-    # _cmd "sudo pacman -Sy --noconfirm"
-    # _cmd "sudo activate-global-python-argcomplete3"
   fi
+
   if ! pacman -Q python3 >/dev/null 2>&1; then
     __task "Installing Python3"
     _cmd "sudo pacman -S --noconfirm --needed python3"
   fi
+
   if ! pacman -Q python-pip >/dev/null 2>&1; then
     __task "Installing Python3 Pip"
     _cmd "sudo pacman -S --noconfirm --needed python-pip"
   fi
+
   if ! pip3 list | grep watchdog >/dev/null 2>&1; then
     __task "Installing Python3 Watchdog"
     _cmd "sudo pacman -S --noconfirm --needed python-watchdog"
@@ -82,9 +87,6 @@ function arch_setup() {
     __task "Installing OpenSSH"
     _cmd "sudo pacman -S --noconfirm --needed openssh"
   fi
-
-  # __task "Setting Locale"
-  # _cmd "sudo localectl set-locale LANG=en_US.UTF-8"
 }
 
 update_ansible_galaxy() {
@@ -123,8 +125,8 @@ case $dotfiles_os in
 esac
 
 if ! [[ -d "$DOTFILES_DIR" ]]; then
-  __task "Cloning repository"
-  _cmd "git clone --quiet https://github.com/karl4online/ansible_dotfiles.git $DOTFILES_DIR"
+  __task "Cloning repository. NOT!!!!!!!!!"
+  # _cmd "git clone --quiet https://github.com/karl4online/ansible_dotfiles.git $DOTFILES_DIR"
 else
   __task "Updating repository. NOT!!!!!!!"
   # _cmd "git -C $DOTFILES_DIR pull --quiet"
