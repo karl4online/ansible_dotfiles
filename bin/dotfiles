@@ -21,35 +21,45 @@ DOTFILES_DIR="$HOME/Dotfiles"
 DOTFILES_LOG="$HOME/dotfiles.log"
 
 function __task {
+
   # if _task is called while a task was set, complete the previous
   if [[ $TASK != "" ]]; then
     printf "%b\n" "${OVERWRITE}${LGREEN} [✓] ${LGREEN}${TASK}"
   fi
+
   # set new task title and print
   TASK=$1
-  printf "%b" "${GREEN} [ ] ${TASK} \n${LRED}"
+  printf "%b" "${GREEN} [ ] ${TASK} \n${LGREEN}"
 }
 
-# _cmd performs commands with error checking
-function _cmd {
+
+function _cmd { # _cmd performs commands with error checking
+
   #create log if it doesn't exist
   if ! [[ -f $DOTFILES_LOG ]]; then
     touch "$DOTFILES_LOG"
   fi
-  # empty conduro.log
+
+  # empty log file
   echo "empty" > "$DOTFILES_LOG"
+
   # hide stdout, on error we print and exit
   if eval "$1" 1> /dev/null 2> "$DOTFILES_LOG"; then
     return 0 # success
   fi
+
   # read error from log and add spacing
   printf "%b\n" "${OVERWRITE}${LRED} [X] ${TASK}${LRED}"
+
   while read -r line; do
     printf "    %s\n" "$line"
   done < "$DOTFILES_LOG"
+
   printf "\n"
+
   # remove log file
   rm "$DOTFILES_LOG"
+
   # exit installation
   exit 1
 }
@@ -147,7 +157,9 @@ ansible-playbook "$DOTFILES_DIR/main.yml" "$@" --ask-become-pass
 
 popd > /dev/null 2>&1
 
-echo -e "${CHECK_MARK} ${GREEN}dotfiles script finished!${NC}"
+echo -e "${CHECK_MARK} ${GREEN}Dotfile script finished!${NC}\n"
 echo -e "${ARROW} ${CYAN}Please reboot your computer if this script installed many new programs!${NC}"
+
+rm "$DOTFILES_LOG"
 
 # vi:ft=bash:
