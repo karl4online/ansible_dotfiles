@@ -1,3 +1,4 @@
+---
 - name: "Alacritty | Install"
   community.general.pacman:
     name: alacritty
