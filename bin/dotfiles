@@ -143,8 +143,8 @@ case $dotfiles_os in
 esac
 
 if ! [[ -d "$DOTFILES_DIR" ]]; then
-  __task "Cloning repository. NOT!!!!!!!!!"
-  # _cmd "git clone --quiet https://github.com/karl4online/ansible_dotfiles.git $DOTFILES_DIR"
+  __task "Cloning repository..."
+  _cmd "git clone --quiet https://github.com/karl4online/ansible_dotfiles.git $DOTFILES_DIR"
 else
   __task "The dotfiles repository already exists. Make sure to keep it UP TO DATE!"
 fi
