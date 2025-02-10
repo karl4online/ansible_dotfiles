@@ -19,6 +19,7 @@ ARROW="${SEA}\xE2\x96\xB6${NC}"
 ID=""
 DOTFILES_DIR="$HOME/Dotfiles"
 DOTFILES_LOG="$HOME/dotfiles.log"
+HTTP_OR_SSH=""
 
 function __task {
 
@@ -41,7 +42,7 @@ function _cmd { # _cmd performs commands with error checking
   fi
 
   # empty log file
-  echo "empty" > "$DOTFILES_LOG"
+  echo "" > "$DOTFILES_LOG"
 
   # hide stdout, on error we print and exit
   if eval "$1" 1> /dev/null 2> "$DOTFILES_LOG"; then
@@ -154,6 +155,14 @@ pushd "$DOTFILES_DIR" > /dev/null 2>&1
 update_ansible_galaxy "$dotfiles_os"
 
 ansible-playbook "$DOTFILES_DIR/main.yml" "$@" --ask-become-pass
+
+# Check if remote is URL or SSH
+HTTP_OR_SSH="$(command git remote get-url origin)"
+
+# If not SSH then change the remote
+if [ "$HTTP_OR_SSH" != "git@github.com:karl4online/ansible_dotfiles.git" ]; then
+    git remote set-url origin git@github.com:karl4online/ansible_dotfiles.git
+fi
 
 popd > /dev/null 2>&1
 
