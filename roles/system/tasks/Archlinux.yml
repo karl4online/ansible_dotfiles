@@ -12,10 +12,3 @@
       - jq
     state: present
   become: true
-
-- name: "System | Install ClamAV | {{ ansible_distribution }} "
-  community.general.pacman:
-    name:
-      - clamav
-    state: present
-  become: true

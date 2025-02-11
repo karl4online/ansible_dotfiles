@@ -1,0 +1,23 @@
+---
+- name: "Dunst | Install"
+  community.general.pacman:
+    name: dunst
+    state: present
+  become: true
+
+- name: "Dunst | Ensure dunst directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/dunst
+
+- name: "Dunst | Symlink dunst config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/dunstrc"
+    dest: ~/.config/dunst/dunstrc
+    mode: "0644"
+    state: link
+    force: true

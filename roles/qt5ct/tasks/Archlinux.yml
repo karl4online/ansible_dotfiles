@@ -1,0 +1,23 @@
+---
+- name: "Qt5ct | Install"
+  community.general.pacman:
+    name: qt5ct
+    state: present
+  become: true
+
+- name: "Qt5ct | Ensure qt5ct directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/qt5ct
+
+- name: "Qt5ct | Symlink qt5ct config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/qt5ct.conf"
+    dest: ~/.config/qt5ct/qt5ct.conf
+    mode: "0644"
+    state: link
+    force: true

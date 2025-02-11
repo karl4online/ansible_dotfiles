@@ -1,0 +1,23 @@
+---
+- name: "Helix | Install"
+  community.general.pacman:
+    name: helix
+    state: present
+  become: true
+
+- name: "Helix | Ensure helix directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/helix
+
+- name: "Helix | Symlink helix config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/config.toml"
+    dest: ~/.config/helix/config.toml
+    mode: "0644"
+    state: link
+    force: true

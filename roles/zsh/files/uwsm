@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+# Check if UWSM is already sourced
+if [[ -z "$UWSM_SOURCED" ]]; then
+    export UWSM_SOURCED=1
+
+    if uwsm check may-start && uwsm select; then
+      exec systemd-cat -t uwsm_start uwsm start default
+    fi
+fi
+
+

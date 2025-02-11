@@ -1,0 +1,32 @@
+---
+- name: "Tmux | Install"
+  community.general.pacman:
+    name: tmux
+    state: present
+  become: true
+
+- name: "Tmux | Ensure tmux directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/tmux
+    - ~/.config/plugins
+
+- name: "Tmux | Symlink tmux config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/tmux.conf"
+    dest: ~/.config/tmux/tmux.conf
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Tmux | Symlink tmux Catppuccin Mocha theme"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/catppuccin_mocha.conf"
+    dest: ~/.config/tmux/catppuccin_mocha.conf
+    mode: "0644"
+    state: link
+    force: true

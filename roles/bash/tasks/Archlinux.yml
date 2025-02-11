@@ -1,0 +1,30 @@
+---
+- name: "Bash | Install"
+  community.general.pacman:
+    name: bash
+    state: present
+  become: true
+
+- name: "Bash | Ensure bash directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/
+
+- name: "Bash | Symlink bashrc"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/.bashrc"
+    dest: ~/.bashrc
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Bash | Symlink bash/zsh aliases"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/.aliases"
+    dest: ~/.aliases
+    mode: "0644"
+    state: link
+    force: true

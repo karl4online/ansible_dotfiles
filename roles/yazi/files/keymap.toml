@@ -1,0 +1,49 @@
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+[manager]
+prepend_keymap = [
+
+  { on = "2",         run = "plugin smart-switch 1",          desc = "Switch or create tab 2" },
+  { on = "!",         run = 'shell "$SHELL" --block',         desc = "Open shell here" },
+  { on = "Esc",       run = "close",                          desc = "Cancel input(no vim)" },
+
+  { on = "C",         run = "plugin ouch zip",                desc = "Compress with ouch" },
+  { on = "<C-y>",     run = "plugin wl-clipboard",            desc = "Copy to System" },
+
+  { on = "<A-1>",     run = "plugin toggle-view parent",      desc = "Toggle parent" },
+  { on = "<A-2>",     run = "plugin toggle-view current",     desc = "Toggle current" },
+  { on = "<A-3>",     run = "plugin toggle-view preview",     desc = "Toggle preview" },
+
+  { on = ["c", "m",], run = "plugin chmod",                   desc = "Chmod on selected files" },
+  { on = [".", "s",], run = "plugin what-size",               desc = "Calc size of selection or cwd" },
+
+  { on = ["n", "f",], run = "create",                         desc = "Create a new file" },
+  { on = ["n", "d",], run = "create --dir",                   desc = "Create a new directory" },
+
+  { on = ["g", "a",], run = "cd ~/.config/alacritty",         desc = "Go to Alacritty" },
+  { on = ["g", "b",], run = "cd ~/Sync/backups",              desc = "Go to Backups" },
+  { on = ["g", "B",], run = "cd ~/.local/bin",                desc = "Go to Bin" },
+  { on = ["g", "C",], run = "cd ~/.config",                   desc = "Go to Configs" },
+  { on = ["g", "d",], run = "cd ~/.config/dunst",             desc = "Go to Dunst" },
+  { on = ["g", "D",], run = "cd ~/Downloads",                 desc = "Go to Downloads" },
+  { on = ["g", "E",], run = "cd /etc",                        desc = "Go to Etc" },
+  { on = ["g", "h",], run = "cd ~/.config/hypr",              desc = "Go to Hyperland" },
+  { on = ["g", "H",], run = "cd ~",                           desc = "Go to Home" },
+  { on = ["g", "k",], run = "cd ~/.config/kitty",             desc = "Go to Kitty" },
+  { on = ["g", "L",], run = "cd ~/.local",                    desc = "Go to Local" },
+  { on = ["g", "n",], run = "cd ~/.config/nvim",              desc = "Go to Neovim" },
+  { on = ["g", "N",], run = "cd ~/Sync/notes",                desc = "Go to Notes" },
+  { on = ["g", "P",], run = "cd ~/Pictures",                  desc = "Go to Pictures" },
+  { on = ["g", "r",], run = "cd ~/.config/rofi",              desc = "Go to Rofi" },
+  { on = ["g", "R",], run = "cd /",                           desc = "Go to Root" },
+  { on = ["g", "S",], run = "cd ~/Sync/",                     desc = "Go to Sync" },
+  { on = ["g", "t",], run = "cd ~/.config/tmux",              desc = "Go to Tmux" },
+  { on = ["g", "T",], run = "cd ~/.local/share/Trash/files",  desc = "Go to Trash" },
+  { on = ["g", "v",], run = "cd ~/.config/vim",               desc = "Go to Vim" },
+  { on = ["g", "w",], run = "cd ~/.config/waybar",            desc = "Go to Waybar" },
+  { on = ["g", "y",], run = "cd ~/.config/yazi",              desc = "Go to Yazi" },
+  { on = ["g", "z",], run = "cd ~/.config/zsh",               desc = "Go to Zsh" },
+  { on = ["g", "Z",], run = "cd ~/.config/zellij",            desc = "Go to Zellij" },
+]

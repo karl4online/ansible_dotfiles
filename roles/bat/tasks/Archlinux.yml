@@ -1,0 +1,32 @@
+---
+- name: "BAT | Install"
+  community.general.pacman:
+    name: bat
+    state: present
+  become: true
+
+- name: "BAT | Ensure bat directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/bat
+    - ~/.config/bat/themes
+
+- name: "BAT | Symlink bat config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/config"
+    dest: ~/.config/bat/config
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "BAT | Symlink bat Catppuccin Mocha theme"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/Catppuccin_Mocha.tmTheme"
+    dest: ~/.config/bat/themes/Catppuccin_Mocha.tmTheme
+    mode: "0644"
+    state: link
+    force: true

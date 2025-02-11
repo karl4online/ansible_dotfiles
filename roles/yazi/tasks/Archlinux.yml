@@ -1,0 +1,57 @@
+---
+- name: "Yazi | Install"
+  community.general.pacman:
+    name: yazi
+    state: present
+  become: true
+
+- name: "Yazi | Ensure yazi directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/yazi
+    - ~/.config/flavors
+    - ~/.config/plugins
+
+- name: "Yazi | Symlink yazi init"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/init.lua"
+    dest: ~/.config/yazi/init.lua
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Yazi | Symlink yazi keymap"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/keymap.toml"
+    dest: ~/.config/yazi/keymap.toml
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Yazi | Symlink yazi package"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/package.toml"
+    dest: ~/.config/yazi/package.toml
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Yazi | Symlink yazi theme"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/theme.toml"
+    dest: ~/.config/yazi/theme.toml
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Yazi | Symlink yazi config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/yazi.toml"
+    dest: ~/.config/yazi/yazi.toml
+    mode: "0644"
+    state: link
+    force: true

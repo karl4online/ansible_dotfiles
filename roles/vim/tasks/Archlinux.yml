@@ -1,0 +1,32 @@
+---
+- name: "Vim | Install"
+  community.general.pacman:
+    name: vim
+    state: present
+  become: true
+
+- name: "Vim | Ensure vim directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/vim
+    - ~/.config/vim/colors
+
+- name: "Vim | Symlink vim config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/vimrc"
+    dest: ~/.config/vim/vimrc
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Vim | Symlink vim Catppuccin Mocha theme"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/catppuccin_mocha.vim"
+    dest: ~/.config/vim/colors/catppuccin_mocha.vim
+    mode: "0644"
+    state: link
+    force: true

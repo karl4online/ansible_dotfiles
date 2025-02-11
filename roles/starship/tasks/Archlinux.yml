@@ -1,0 +1,23 @@
+---
+- name: "Starship | Install"
+  community.general.pacman:
+    name: starship
+    state: present
+  become: true
+
+- name: "Starship | Ensure starship directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/starship
+
+- name: "Starship | Symlink starship config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/starship.toml"
+    dest: ~/.config/starship/starship.toml
+    mode: "0644"
+    state: link
+    force: true

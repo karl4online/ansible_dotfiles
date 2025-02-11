@@ -1,0 +1,134 @@
+@import url("./catppuccin-mocha.css");
+
+@define-color bg-base @catmoch-base;
+@define-color fg-light @catmoch-text;
+@define-color fg-dark @catmoch-peach;
+@define-color ws-button @catmoch-lavender;
+@define-color ws-button-active @catmoch-rosewater;
+@define-color w-red @catmoch-red;
+
+/* -----------------------------------------------------
+ * General
+ * ----------------------------------------------------- */
+
+* {
+    border: none;
+    border-radius: 0em;
+    font-family: JetbrainsMono Nerd Font;
+}
+
+window#waybar {
+    background: alpha(@bg-base, 0.0);
+    /*background: rgba(0.0, 0.0, 0.0, 0.2); */
+}
+
+tooltip {
+    background: @bg-base;
+    border-radius: 0.5em;
+    opacity: 0.85;
+}
+
+tooltip label {
+    color: @fg-dark;
+    font-size: 20px;
+}
+
+/* -----------------------------------------------------
+ * Workspaces & buttons
+ * ----------------------------------------------------- */
+
+#workspaces {
+    color: @ws-button;
+    background-color: @bg-base;
+    margin: 0.2em 0.5em;
+    padding: 0em 0.5em;
+    border: 0em;
+    border-radius: 0.6em;
+    font-size: 20px;
+    opacity: 0.85;
+}
+
+#workspaces button {
+    color: @ws-button;
+    margin: 0.2em 0em;
+    padding: 0em 0.4em;
+    opacity: 0.85;
+}
+
+#workspaces button.empty {
+    color: alpha(@ws-button, 0.4);
+}
+
+#workspaces button.active {
+    color: @ws-button-active;
+}
+
+#workspaces button:hover {
+    color: alpha(@ws-button, 0.7);
+    border-radius: 0.6em;
+}
+
+/* -----------------------------------------------------
+ * Windows (text for focused window)
+ * ----------------------------------------------------- */
+
+#window {
+    color: @fg-light;
+    background-color: @bg-base;
+    border: 0em;
+    border-radius: 0.6em;
+    margin: 0.2em 0.5em;
+    padding: 0em 0.5em;
+    min-width: 20px;
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+window#waybar.empty #window {
+    background-color: transparent;
+}
+
+/* -----------------------------------------------------
+ * Right of workspaces
+ * ----------------------------------------------------- */
+
+#clock {
+    color: @fg-light;
+    background-color: @bg-base;
+    border: 0em;
+    border-radius: 0.6em;
+    margin: 0.2em 0.3em;
+    padding: 0em 0.8em;
+    font-size: 18px;
+    opacity: 0.85;
+}
+
+#tray,
+#language,
+#pulseaudio,
+#bluetooth,
+#network,
+#power-profiles-daemon,
+#battery,
+#custom-exit,
+#barright {
+    color: @fg-light;
+    background-color: @bg-base;
+    border: 0em;
+    border-radius: 0.6em;
+    margin: 0.2em 0.3em;
+    padding: 0em 0.3em;
+    font-size: 18px;
+    opacity: 0.85;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @wRed;
+}
+
+/*--------------------------------------------------*/

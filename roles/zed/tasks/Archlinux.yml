@@ -1,0 +1,31 @@
+---
+- name: "Zed | Install"
+  community.general.pacman:
+    name: zed
+    state: present
+  become: true
+
+- name: "Zed | Ensure zed directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/zed
+
+- name: "Zed | Symlink zed keymap"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/keymap.json"
+    dest: ~/.config/zed/keymap.json
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Zed | Symlink zed settings"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/settings.json"
+    dest: ~/.config/zed/settings.json
+    mode: "0644"
+    state: link
+    force: true

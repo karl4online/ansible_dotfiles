@@ -1,24 +1,30 @@
 default_roles:
-  - system
   - alacritty
-  # - Bitwarden/Keepassxc
-  # - bash
-  # - bat
+  - bash
+  - bat
   - btop
-  # - fastfetch
-  # - flatpak
-  # - fonts
-  # - fzf
-  # - git
-  # - kitty
-  # - lazygit
+  - dunst
+  - emacs
+  - fastfetch
+  - foot
+  - ghostty
+  - gtk-3.0
+  - helix
+  - hypr
+  - kitty
+  - kvantum
   - lsd
-  # - lua
-  # - neovim
-  # - python
-  # - starship
-  # - tldr
-  # - tmux
-  # - zellij
-  # - zoxide
-  # - zsh
+  - nvim
+  - qt5ct
+  - qt6ct
+  - rofi
+  - starship
+  - system
+  - tmux
+  - uwsm
+  - vim
+  - waybar
+  - yazi
+  - zed
+  - zellij
+  - zsh

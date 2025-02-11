@@ -1,0 +1,23 @@
+---
+- name: "Zellij | Install"
+  community.general.pacman:
+    name: zellij
+    state: present
+  become: true
+
+- name: "Zellij | Ensure zellij directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/zellij
+
+- name: "Zellij | Symlink zellij config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/config.kdl"
+    dest: ~/.config/zellij/config.kdl
+    mode: "0644"
+    state: link
+    force: true

@@ -1,0 +1,23 @@
+---
+- name: "Qt6ct | Install"
+  community.general.pacman:
+    name: qt6ct
+    state: present
+  become: true
+
+- name: "Qt6ct | Ensure qt6ct directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/qt6ct
+
+- name: "Qt6ct | Symlink qt6ct config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/qt6ct.conf"
+    dest: ~/.config/qt6ct/qt6ct.conf
+    mode: "0644"
+    state: link
+    force: true

@@ -1,0 +1,42 @@
+#!/usr/bin/env zsh
+
+PP='/usr/share/zsh/plugins'
+
+if [[ -f "$PP/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh" ]]; then
+    source "$PP/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+fi
+if [[ -f "$PP/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh" ]]; then
+    source "$PP/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+fi
+if [[ -f "$PP/zsh-history-substring-search/zsh-history-substring-search.zsh" ]]; then
+    source "$PP/zsh-history-substring-search/zsh-history-substring-search.zsh"
+fi
+
+
+# git clone https://github.com/Aloxaf/fzf-tab $HOME/.config/zsh/plugins/fzf-tab
+if [[ -f "$ZSH/plugins/fzf-tab/fzf-tab.plugin.zsh" ]]; then
+    source "$ZSH/plugins/fzf-tab/fzf-tab.plugin.zsh"
+fi
+# git clone https://github.com/jeffreytse/zsh-vi-mode.git $HOME/.config/zsh/plugins/zsh-vi-mode
+if [[ -f "$ZSH/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ]]; then
+    source "$ZSH/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+fi
+
+# CURSOR - ZSH-VI-MODE
+ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
+ZVM_VISUAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+ZVM_VISUAL_LINE_MODE_CURSOR=$ZVM_CURSOR_BEAM
+ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+ZVM_VI_HIGHLIGHT_BACKGROUND=#89dceb
+ZVM_VI_HIGHLIGHT_FOREGROUND=#11111b
+ZVM_ESCAPE_KEYTIMEOUT=0.01
+# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+# ZVM_CURSOR_STYLE_ENABLED=false
+
+# ZSH-VI-MODE will auto execute this zvm_after_init function
+function zvm_after_init() {
+
+    # Set up fzf key bindings and fuzzy completion
+    source <(fzf --zsh)
+}

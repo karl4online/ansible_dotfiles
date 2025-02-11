@@ -1,0 +1,40 @@
+---
+- name: "Zsh | Install"
+  community.general.pacman:
+    name: zsh
+    state: present
+  become: true
+
+- name: "Zsh | Ensure zsh directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/zsh
+    - ~/.config/plugins
+
+- name: "Zsh | Symlink zshrc"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/.zshrc"
+    dest: ~/.config/zsh/.zshrc
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Zsh | Symlink zsh plugins"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/.zsh_plugins"
+    dest: ~/.config/zsh/.zsh_plugins
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Zsh | Symlink zsh uwsm start"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/uwsm"
+    dest: ~/.config/zsh/uwsm
+    mode: "0644"
+    state: link
+    force: true

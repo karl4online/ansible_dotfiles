@@ -1,0 +1,55 @@
+---
+- name: "Rofi | Install"
+  community.general.pacman:
+    name: rofi-wayland
+    state: present
+  become: true
+
+- name: "Rofi | Ensure rofi directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/rofi
+
+- name: "Rofi | Symlink rofi config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/config.rasi"
+    dest: ~/.config/rofi/config.rasi
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Rofi | Symlink rofi applauncher style"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/applauncher-style.rasi"
+    dest: ~/.config/rofi/applauncher-style.rasi
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Rofi | Symlink rofi powermenu style"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/powermenu-style.rasi"
+    dest: ~/.config/rofi/powermenu-style.rasi
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Rofi | Symlink rofi applauncher script"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/applauncher.sh"
+    dest: ~/.config/rofi/applauncher.sh
+    mode: "0744"
+    state: link
+    force: true
+
+- name: "Rofi | Symlink rofi powermenu script"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/powermenu.sh"
+    dest: ~/.config/rofi/powermenu.sh
+    mode: "0744"
+    state: link
+    force: true

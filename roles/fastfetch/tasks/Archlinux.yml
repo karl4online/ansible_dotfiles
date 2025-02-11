@@ -1,0 +1,23 @@
+---
+- name: "Fastfetch | Install"
+  community.general.pacman:
+    name: fastfetch
+    state: present
+  become: true
+
+- name: "Fastfetch | Ensure fastfetch directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/fastfetch
+
+- name: "Fastfetch | Symlink fastfetch config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/config.jsonc"
+    dest: ~/.config/fastfetch/config.jsonc
+    mode: "0644"
+    state: link
+    force: true

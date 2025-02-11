@@ -1,0 +1,39 @@
+---
+- name: "Waybar | Install"
+  community.general.pacman:
+    name: waybar
+    state: present
+  become: true
+
+- name: "Waybar | Ensure waybar directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/waybar
+
+- name: "Waybar | Symlink waybar config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/config.jsonc"
+    dest: ~/.config/waybar/config.jsonc
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Waybar | Symlink waybar style"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/style.css"
+    dest: ~/.config/waybar/style.css
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Waybar | Symlink waybar Catppuccin Mocha theme"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/catppuccin-mocha.css"
+    dest: ~/.config/waybar/catppuccin-mocha.css
+    mode: "0644"
+    state: link
+    force: true

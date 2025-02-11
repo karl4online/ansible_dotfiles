@@ -1,0 +1,130 @@
+---
+- name: "Neovim | Install"
+  community.general.pacman:
+    name: neovim
+    state: present
+  become: true
+
+- name: "Neovim | Ensure Neovims directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/nvim
+    - ~/.config/nvim/lua
+    - ~/.config/nvim/lua/config
+    - ~/.config/nvim/lua/plugins
+
+- name: "Neovim | Symlink Neovim neoconf"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/.neoconf.json"
+    dest: ~/.config/nvim/.neoconf.json
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim init"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/init.lua"
+    dest: ~/.config/nvim/init.lua
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim lazyvim"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/lazyvim.json"
+    dest: ~/.config/nvim/lazyvim.json
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim stylua"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/stylua.toml"
+    dest: ~/.config/nvim/stylua.toml
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim autocmds"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/autocmds.lua"
+    dest: ~/.config/nvim/lua/config/autocmds.lua
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim keymaps"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/keymaps.lua"
+    dest: ~/.config/nvim/lua/config/keymaps.lua
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim lazy bootstrap"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/lazy.lua"
+    dest: ~/.config/nvim/lua/config/lazy.lua
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim options"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/options.lua"
+    dest: ~/.config/nvim/lua/config/options.lua
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim flash plugin"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/flash.lua"
+    dest: ~/.config/nvim/lua/plugins/flash.lua
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim mini plugin"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/mini.lua"
+    dest: ~/.config/nvim/lua/plugins/mini.lua
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim flash nvim-tmux-navigator"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/nvim-tmux-navigator.lua"
+    dest: ~/.config/nvim/lua/plugins/nvim-tmux-navigator.lua
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim orgbullets plugin"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/orgbullets.lua"
+    dest: ~/.config/nvim/lua/plugins/orgbullets.lua
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim orgmode plugin"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/orgmode.lua"
+    dest: ~/.config/nvim/lua/plugins/orgmode.lua
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Neovim | Symlink Neovim yazi-nvim plugin"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/yazi-nvim.lua"
+    dest: ~/.config/nvim/lua/plugins/yazi-nvim.lua
+    mode: "0644"
+    state: link
+    force: true

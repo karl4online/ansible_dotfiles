@@ -1,0 +1,127 @@
+---
+- name: "Hyprland | Install"
+  community.general.pacman:
+    name: hyprland
+    state: present
+  become: true
+
+- name: "Hyprland | Ensure Hyprlands directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/hypr
+    - ~/.config/hypr/configs
+
+- name: "Hyprland | Symlink Hypridle config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/hypridle.conf"
+    dest: ~/.config/hypr/hypridle.conf
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Hyprland | Symlink Hyprland config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/hyprland.conf"
+    dest: ~/.config/hypr/hyprland.conf
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Hyprland | Symlink Hyprlock config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/hyprlock.conf"
+    dest: ~/.config/hypr/hyprlock.conf
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Hyprland | Symlink Hyprpaper config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/hyprpaper.conf"
+    dest: ~/.config/hypr/hyprpaper.conf
+    mode: "0644"
+    state: link
+    force: true
+
+
+- name: "Hyprland | Symlink Hyprland aesthetics config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/aesthetics.conf"
+    dest: ~/.config/hypr/configs/aesthetics.conf
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Hyprland | Symlink Hyprland assign-workspaces config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/assign-workspaces.conf"
+    dest: ~/.config/hypr/configs/assign-workspaces.conf
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Hyprland | Symlink Hyprland autostart config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/autostart.conf"
+    dest: ~/.config/hypr/configs/autostart.conf
+    mode: "0644"
+    state: link
+    force: true
+
+
+- name: "Hyprland | Symlink Hyprland environment config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/environment.conf"
+    dest: ~/.config/hypr/configs/environment.conf
+    mode: "0644"
+    state: link
+    force: true
+
+
+- name: "Hyprland | Symlink Hyprland input-rules config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/input-rules.conf"
+    dest: ~/.config/hypr/configs/input-rules.conf
+    mode: "0644"
+    state: link
+    force: true
+
+
+- name: "Hyprland | Symlink Hyprland keybindings config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/keybindings.conf"
+    dest: ~/.config/hypr/configs/keybindings.conf
+    mode: "0644"
+    state: link
+    force: true
+
+
+- name: "Hyprland | Symlink Hyprland monitors config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/monitors.conf"
+    dest: ~/.config/hypr/configs/monitors.conf
+    mode: "0644"
+    state: link
+    force: true
+
+
+- name: "Hyprland | Symlink Hyprland variables config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/variables.conf"
+    dest: ~/.config/hypr/configs/variables.conf
+    mode: "0644"
+    state: link
+    force: true
+
+
+- name: "Hyprland | Symlink Hyprland window-rules config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/window-rules.conf"
+    dest: ~/.config/hypr/configs/window-rules.conf
+    mode: "0644"
+    state: link
+    force: true

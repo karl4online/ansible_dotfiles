@@ -1,0 +1,40 @@
+---
+- name: "Kvantum | Install"
+  community.general.pacman:
+    name: kvantum
+    state: present
+  become: true
+
+- name: "Kvantum | Ensure Kvantum directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/Kvantum
+    - ~/.config/Dracula-purple-solid
+
+- name: "Kvantum | Symlink Kvantum config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/kvantum.kvconfig"
+    dest: ~/.config/Kvantum/kvantum.kvconfig
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Kvantum | Symlink Kvantum Dracula Purple config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/Dracula-purple-solid.kvconfig"
+    dest: ~/.config/Kvantum/Dracula-purple-solid/Dracula-purple-solid.kvconfig
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Kvantum | Symlink Kvantum Dracula Purple svg"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/Dracula-purple-solid.svg"
+    dest: ~/.config/Kvantum/Dracula-purple-solid/Dracula-purple-solid.svg
+    mode: "0644"
+    state: link
+    force: true

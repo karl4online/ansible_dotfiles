@@ -1,0 +1,31 @@
+---
+- name: "Uwsm | Install"
+  community.general.pacman:
+    name: uwsm
+    state: present
+  become: true
+
+- name: "Uwsm | Ensure uwsm directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/uwsm
+
+- name: "Uwsm | Symlink uwsm env config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/env"
+    dest: ~/.config/uwsm/env
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Uwsm | Symlink uwsm env-hyprland config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/env-hyprland"
+    dest: ~/.config/uwsm/env-hyprland
+    mode: "0644"
+    state: link
+    force: true

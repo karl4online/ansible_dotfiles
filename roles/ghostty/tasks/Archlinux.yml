@@ -1,0 +1,23 @@
+---
+- name: "Ghostty | Install"
+  community.general.pacman:
+    name: ghostty
+    state: present
+  become: true
+
+- name: "Ghostty | Ensure ghostty directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/ghostty
+
+- name: "Ghostty | Symlink ghostty config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/config"
+    dest: ~/.config/ghostty/config
+    mode: "0644"
+    state: link
+    force: true

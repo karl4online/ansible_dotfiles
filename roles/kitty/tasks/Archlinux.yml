@@ -1,0 +1,40 @@
+---
+- name: "Kitty | Install"
+  community.general.pacman:
+    name: kitty
+    state: present
+  become: true
+
+- name: "Kitty | Ensure kitty directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/kitty
+    - ~/.config/kitty/themes
+
+- name: "Kitty | Symlink kitty config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/kitty.conf"
+    dest: ~/.config/kitty/kitty.conf
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Kitty | Symlink kitty Catppuccin Mocha theme"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/catppuccin-mocha.conf"
+    dest: ~/.config/kitty/themes/catppuccin-mocha.conf
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Kitty | Symlink kitty Tokyo Night Storm theme"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/tokyonight_storm.conf"
+    dest: ~/.config/kitty/themes/tokyonight_storm.conf
+    mode: "0644"
+    state: link
+    force: true

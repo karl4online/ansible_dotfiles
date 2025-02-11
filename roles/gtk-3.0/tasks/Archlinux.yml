@@ -1,0 +1,23 @@
+---
+- name: "Gtk3 | Install"
+  community.general.pacman:
+    name: gtk3
+    state: present
+  become: true
+
+- name: "Gtk3 | Ensure Gtk-3.0 directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/gtk-3.0
+
+- name: "Gtk3 | Symlink Gtk-3.0 config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/settings.ini"
+    dest: ~/.config/gtk-3.0/settings.ini
+    mode: "0644"
+    state: link
+    force: true

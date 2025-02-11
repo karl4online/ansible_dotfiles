@@ -1,0 +1,50 @@
+
+gtk-wide-tabs = false
+adw-toolbar-style = raised
+# gtk-adwaita = false
+
+font-size = 14
+font-family = MesloLGS Nerd Font Mono
+
+theme = rose-pine
+# theme = rose-pine-moon
+# theme = light:rose-pine-dawn,dark:rose-pine
+
+# theme = tokyonight_moon
+# theme = tokyonight-storm
+# theme = light:tokyonight-storm, dark:tokyonight_moon
+
+# theme = catppuccin-mocha
+# theme = catppuccin-macchiato
+# theme = Everblush
+# theme = Everforest Dark - Hard
+# theme = Galizur
+# theme = GruvboxDarkHard
+# theme = Kanagawa Wave
+# theme = MonaLisa
+# theme = nord
+# theme = nordfox
+# theme = SeaShells
+
+# window-padding-x = 8
+# window-padding-y = 8
+
+# selection-foreground
+# selection-background
+
+# window-decoration = false
+# background-opacity = 1.0
+# mouse-hide-while-typing = true
+
+# Key bindings
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
+keybind = ctrl+shift+r=new_split:right
+keybind = ctrl+shift+d=new_split:down
+
+# keybind = ctrl+shift+h=goto_tab:left
+# keybind = ctrl+shift+l=goto_tab:right
+

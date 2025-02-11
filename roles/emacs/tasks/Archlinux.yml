@@ -1,0 +1,48 @@
+---
+- name: "Emacs | Install"
+  community.general.pacman:
+    name: emacs-wayland
+    state: present
+  become: true
+
+- name: "Emacs | Ensure emacs directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/emacs
+    - ~/.config/emacs/scripts
+
+- name: "Emacs | Symlink emacs config.org"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/config.org"
+    dest: ~/.config/emacs/config.org
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Emacs | Symlink emacs early-init.el"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/early-init.el"
+    dest: ~/.config/emacs/early-init.el
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Emacs | Symlink emacs elpaca-setup.el"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/elpaca-setup.el"
+    dest: ~/.config/emacs/scripts/elpaca-setup.el
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Emacs | Symlink emacs init.el"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/init.el"
+    dest: ~/.config/emacs/init.el
+    mode: "0644"
+    state: link
+    force: true

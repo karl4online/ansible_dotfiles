@@ -1,0 +1,32 @@
+---
+- name: "Foot | Install"
+  community.general.pacman:
+    name: foot
+    state: present
+  become: true
+
+- name: "Foot | Ensure foot directory structure exists"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: "0755"
+    state: directory
+  loop:
+    - ~/.config
+    - ~/.config/foot
+    - ~/.config/foot/themes
+
+- name: "Foot | Symlink foot config"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/foot.ini"
+    dest: ~/.config/foot/foot.ini
+    mode: "0644"
+    state: link
+    force: true
+
+- name: "Foot | Symlink foot Catppuccin Mocha theme"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/catppuccin-mocha.ini"
+    dest: ~/.config/foot/themes/catppuccin-mocha.ini
+    mode: "0644"
+    state: link
+    force: true

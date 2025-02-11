@@ -1,0 +1,58 @@
+[global]
+monitor = 0
+# layer = top
+follow = keyboard
+width = (300, 500)
+height = (60, 750)
+origin = top-center
+offset = (0, 6)
+padding = 2
+horizontal_padding = 12
+text_icon_padding = 2
+gap_size = 10
+transparency = 30 # x11 only
+separator_color = "#1e1e2e" 
+frame_width = 2
+frame_color = "#313244"
+font = MesloLGS Nerd Font Mono 12
+show_age_threshold = 60
+# line_height = 14
+corner_radius = 6
+min_icon_size = 18
+max_icon_size = 32
+format = "<b>%s</b>\n%b"
+
+# enable_recursive_icon_lookup = true
+# icon_theme = "Papirus-Dark, Adwaita"
+
+# Set the progress bar height. This includes the frame, so make sure
+# it's at least twice as big as the frame width.
+progress_bar_height = 14
+progress_bar_frame_width = 2
+progress_bar_min_width = 50
+progress_bar_max_width = 450
+progress_bar_corner_radius = 0
+# Define which corners to round when drawing the progress bar. If progress_bar_corner_radius
+# is set to 0 this option will be ignored.
+progress_bar_corners = all
+
+[urgency_low]
+  background = "#1e1e2e"
+  foreground = "#f5e0dc"
+  highlight = "#89b4fa" # progress bar color
+  timeout = 3
+
+[urgency_normal]
+  background = "#1e1e2e"
+  foreground = "#f5e0dc"
+  highlight = "#89b4fa" # progress bar color
+  timeout = 5
+
+[urgency_critical]
+  background = "#1e1e2e"
+  foreground = "#f38ba8"
+  frame_color = "#f38ba8"
+  highlight = "#89b4fa" # progress bar color
+  timeout = 20
+
+# vim: ft=cfg

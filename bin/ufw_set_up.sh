@@ -17,9 +17,9 @@ printf "%b\n\n" "${RED}Disabling UFW${NC}"
 sudo ufw disable
 sleep 0.1
 
-# printf "\n%b\n\n" "${GREEN}Limiting port 22/tcp (UFW)${NC}"
-# sudo ufw limit 22/tcp
-# sleep 0.1
+printf "\n%b\n\n" "${GREEN}Limiting port 22/tcp (UFW)${NC}"
+sudo ufw limit 22/tcp
+sleep 0.1
 
 printf "\n%b\n\n" "${GREEN}Allowing port 80/tcp (UFW)${NC}"
 sudo ufw allow 80/tcp
@@ -29,9 +29,9 @@ printf "\n%b\n\n" "${GREEN}Allowing port 443/tcp (UFW)${NC}"
 sudo ufw allow 443/tcp
 sleep 0.1
 
-# printf "\n%b\n\n" "${GREEN}Limiting port 22000 (Syncthing)${NC}"
-# sudo ufw limit 22000/tcp
-# sleep 0.1
+printf "\n%b\n\n" "${GREEN}Limiting port 22000 (Syncthing)${NC}"
+sudo ufw limit 22000/tcp
+sleep 0.1
 
 printf "\n%b\n\n" "${GREEN}Denying Incoming Packets by Default(UFW)${NC}"
 sudo ufw default deny incoming
